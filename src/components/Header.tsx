@@ -22,7 +22,7 @@ const Header = () => {
           <nav className="hidden md:block">
             <ul className="flex gap-6">
               <li><a href="/#about" className="text-white hover:text-medical-100 transition-colors">About</a></li>
-              <li><a href="/#prediction" className="text-white hover:text-medical-100 transition-colors">Prediction</a></li>
+              <li><Link to="/prediction" className="text-white hover:text-medical-100 transition-colors">Prediction</Link></li>
               <li><a href="/#info" className="text-white hover:text-medical-100 transition-colors">Information</a></li>
             </ul>
           </nav>
