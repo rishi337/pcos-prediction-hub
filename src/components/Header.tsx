@@ -7,6 +7,9 @@ import { Button } from '@/components/ui/button';
 const Header = () => {
   const location = useLocation();
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  
+  // Mock user state - in a real app, this would come from authentication context
+  const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null;
 
   return (
     <header className="w-full py-4 px-4 md:px-8 bg-gradient-to-r from-medical-600 to-lavender-700 shadow-md">
@@ -26,18 +29,27 @@ const Header = () => {
           
           {!isAuthPage && (
             <div className="flex items-center gap-2">
-              <Link to="/login">
-                <Button variant="outline" className="text-white border-white hover:bg-white/10">
-                  <LogIn className="h-4 w-4 mr-2" />
-                  Login
-                </Button>
-              </Link>
-              <Link to="/register" className="hidden md:block">
-                <Button className="bg-white text-lavender-700 hover:bg-medical-100">
-                  <User className="h-4 w-4 mr-2" />
-                  Register
-                </Button>
-              </Link>
+              {user ? (
+                <div className="flex items-center gap-2 text-white">
+                  <User className="h-5 w-5" />
+                  <span className="font-medium">{user.name}</span>
+                </div>
+              ) : (
+                <>
+                  <Link to="/login">
+                    <Button variant="outline" className="text-white border-white hover:bg-white/10">
+                      <LogIn className="h-4 w-4 mr-2" />
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to="/register" className="hidden md:block">
+                    <Button className="bg-white text-lavender-700 hover:bg-medical-100">
+                      <User className="h-4 w-4 mr-2" />
+                      Register
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           )}
         </div>

@@ -40,10 +40,14 @@ const Register = () => {
   });
 
   const onSubmit = (data: FormValues) => {
-    // This is a mock registration function - in a real app, this would connect to your backend
-    console.log('Registration data:', data);
-    
     // Simulate successful registration
+    const user = { 
+      name: data.name, 
+      email: data.email 
+    };
+    
+    localStorage.setItem('user', JSON.stringify(user));
+    
     toast({
       title: "Account created successfully",
       description: "Welcome to PCOS Prediction Hub!",
@@ -170,5 +174,3 @@ const Register = () => {
     </div>
   );
 };
-
-export default Register;

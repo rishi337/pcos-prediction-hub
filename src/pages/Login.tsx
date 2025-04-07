@@ -32,10 +32,14 @@ const Login = () => {
   });
 
   const onSubmit = (data: FormValues) => {
-    // This is a mock login function - in a real app, this would connect to your backend
-    console.log('Login attempt:', data);
-    
     // Simulate successful login
+    const user = { 
+      name: data.email.split('@')[0], // Use email username as name
+      email: data.email 
+    };
+    
+    localStorage.setItem('user', JSON.stringify(user));
+    
     toast({
       title: "Login successful",
       description: "Welcome back to PCOS Prediction Hub!",
@@ -121,5 +125,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;
